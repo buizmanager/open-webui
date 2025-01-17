@@ -17,9 +17,14 @@
 		"i18n:parse": "i18next --config i18next-parser.config.ts && prettier --write \"src/lib/i18n/**/*.{js,json}\"",
 		"cy:open": "cypress open",
 		"test:frontend": "vitest --passWithNoTests",
-		"pyodide:fetch": "node scripts/prepare-pyodide.js"
+		"pyodide:fetch": "node scripts/prepare-pyodide.js",
+		"build:worker": "opennextjs-cloudflare",
+		"dev:worker": "wrangler dev --port 8771",
+		"preview:worker": "npm run build:worker && npm run dev:worker",
+		"deploy:worker": "npm run build:worker && wrangler deploy"
 	},
 	"devDependencies": {
+		"@opennextjs/cloudflare": "^0.3.8",
 		"@sveltejs/adapter-auto": "3.2.2",
 		"@sveltejs/adapter-static": "^3.0.2",
 		"@sveltejs/kit": "^2.5.20",
@@ -45,7 +50,8 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.5.4",
 		"vite": "^5.3.5",
-		"vitest": "^1.6.0"
+		"vitest": "^1.6.0",
+		"wrangler": "^3.103.1"
 	},
 	"type": "module",
 	"dependencies": {
